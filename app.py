@@ -22,7 +22,7 @@ def predict():
         sex = 1 if data.get('sex') == 'Masculino' else 0
         estado_civil_map = {'Soltero': 0, 'Casado': 1, 'Divorciado': 2, 'Viudo': 3}
         estado_civil = estado_civil_map.get(data.get('estado_civil', 'Soltero'), 0)
-        ciudad_code = float(data.get('ciudad_code', 0))
+        ciudad_code = float(data.get('ciudad_code', 1))
         steroid = 1 if data.get('steroid') == 'Si' else 0
         antivirals = 1 if data.get('antivirals') == 'Si' else 0
         fatigue = 1 if data.get('fatigue') == 'Si' else 0
@@ -34,11 +34,11 @@ def predict():
         spiders = 1 if data.get('spiders') == 'Si' else 0
         ascites = 1 if data.get('ascites') == 'Si' else 0
         varices = 1 if data.get('varices') == 'Si' else 0
-        bilirubin = float(data.get('bilirubin', 0))
-        alk_phosphate = float(data.get('alk_phosphate', 0))
-        sgot = float(data.get('sgot', 0))
-        albumin = float(data.get('albumin', 0))
-        protime = float(data.get('protime', 0))
+        bilirubin = float(data.get('bilirubin', 0.5))
+        alk_phosphate = float(data.get('alk_phosphate', 50))
+        sgot = float(data.get('sgot', 25))
+        albumin = float(data.get('albumin', 4))
+        protime = float(data.get('protime', 12))
         histology = 1 if data.get('histology') == 'Si' else 0
         
         # Simple predictive model based on key risk factors
@@ -80,7 +80,7 @@ def predict():
         }
         
         return jsonify(result)
-    
+        
     except Exception as e:
         return jsonify({'error': str(e)}), 400
 
